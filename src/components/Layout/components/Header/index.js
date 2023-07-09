@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(style);
 function Header() {
@@ -15,12 +16,12 @@ function Header() {
 
     useEffect(() => {
         const temp = setTimeout(() => {
-            setSearchResult([])
+            setSearchResult([]);
         }, 0);
         return () => {
             clearTimeout(temp);
-        }
-    }, [])
+        };
+    }, []);
 
     return (
         <header className={cx('wrapper')}>
@@ -30,17 +31,17 @@ function Header() {
                 </div>
 
                 <Tippy
-                    interactive//co the click
+                    interactive //co the click
                     visible={searchResult.length > 0}
                     render={(attrs) => (
                         <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                             <PopperWrapper>
                                 <h4 className={cx('search-title')}>Account</h4>
-                                <AccountItem/>
-                                <AccountItem/>
-                                <AccountItem/>
-                                <AccountItem/>
-                                <AccountItem/>
+                                <AccountItem />
+                                <AccountItem />
+                                <AccountItem />
+                                <AccountItem />
+                                <AccountItem />
                             </PopperWrapper>
                         </div>
                     )}
@@ -60,7 +61,10 @@ function Header() {
                     </div>
                 </Tippy>
 
-                <div className={cx('action')}></div>
+                <div className={cx('action')}>
+                    <Button text>Upload</Button>
+                    <Button primary rounded>Log in</Button>
+                </div>
             </div>
         </header>
     );
