@@ -14,6 +14,8 @@ function Button({
     text = false,
     rounded = false,
     disabled = false,
+    leftIcon,
+    rightIcon,
     children,
     className,
     onClick,
@@ -33,7 +35,7 @@ function Button({
         })
     }
 
-    if (to) {
+    if(to) {
         _props.to = to;
         Comp = Link;
     } else if (href) {
@@ -54,7 +56,9 @@ function Button({
 
     return (
         <Comp className={classes} {..._props}>
-            <span>{children}</span>
+            {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
+            <span className={cx('title')}>{children}</span>
+            {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
         </Comp>
     );
 }
