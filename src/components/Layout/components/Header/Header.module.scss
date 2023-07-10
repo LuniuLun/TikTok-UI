@@ -101,6 +101,21 @@
     }
 }
 
+
+// action
+.action{
+    display: flex;
+    align-items: center;
+}
+
+.action-btn{
+    color: #161823;
+    background-color: transparent;
+    font-size: 2rem;
+    padding: 4px 12px;
+    cursor: pointer;
+}
+
 .more-btn{
     font-size: 2rem;
     font-weight: 500px;
@@ -110,6 +125,14 @@
     cursor: pointer;
 }
 
+.user-avatar{
+    width: 32;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-left: 12px;
+    cursor: pointer;
+}
 
 
 
