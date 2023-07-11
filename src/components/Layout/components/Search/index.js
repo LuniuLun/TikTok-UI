@@ -7,7 +7,8 @@ import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-s
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import { useDebounce } from '~/hooks';
-
+import * as request from '~/utils/requets';
+import  * as  searchService  from '~/apiServices/searchServices';
 const cx = classNames.bind(style);
 
 function Search() {
@@ -20,27 +21,25 @@ function Search() {
 
     const inputRef = useRef();
 
-
     useEffect(() => {
-        if(!debounced.trim()) {
+        if (!debounced.trim()) {
             setSearchResult([]);
             return;
         }
-        setLoading(true);
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
-            .then(res => res.json())
-            .then(res => {
-                setSearchResult(res.data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            })
+        const fetchApi = async () => {
+            setLoading(true);
+            
+            const result = await searchService.search(debounced);
+            setSearchResult(result);
+            setLoading(false);
+        }
+
+        fetchApi();
     }, [debounced]);
 
     const handleHideResult = () => {
         setShowResult(false);
-    }
+    };
     return (
         <HeadlessTippy
             interactive //co the click
@@ -50,7 +49,7 @@ function Search() {
                     <PopperWrapper>
                         <h4 className={cx('search-title')}>Account</h4>
                         {searchResult.map((result) => {
-                            return <AccountItem key={result.id} data={result}/>
+                            return <AccountItem key={result.id} data={result} />;
                         })}
                     </PopperWrapper>
                 </div>
@@ -74,7 +73,7 @@ function Search() {
                         onClick={() => {
                             setSearchValue('');
                             inputRef.current.focus();
-                            setSearchResult([])
+                            setSearchResult([]);
                         }}
                     >
                         {/* clear */}
