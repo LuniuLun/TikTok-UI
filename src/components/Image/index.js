@@ -1,6 +1,5 @@
 import { forwardRef, useState } from 'react';
 import style from './image.module.scss';
-import classNames from 'classnames';
 import images from '~/assets/images';
 // khong su li ref thi tippy se khong get duoc element de lay vi tri xuat hien tooltip
 const Image = forwardRef(({ src, alt, className, ...props }, ref) => {
