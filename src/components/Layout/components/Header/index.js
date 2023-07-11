@@ -15,7 +15,6 @@ import {
     faMagnifyingGlass,
     faEllipsisVertical,
     faCloudArrowUp,
-    faMessage,
     faUser,
     faCoins,
     faGear,
@@ -26,6 +25,8 @@ import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 import MenuItem from '~/components/Popper/Menu/MenuItem';
+import { LetterIcon, MessageIcon } from '~/components/Icon';
+import Image from '~/components/Image';
 
 const MENU_ITEMS = [
     {
@@ -123,7 +124,7 @@ function Header() {
             to: '/logout',
             separate: true,
         },
-    ]
+    ];
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -165,9 +166,28 @@ function Header() {
                 <div className={cx('action')}>
                     {currentUser ? (
                         <>
-                            <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
+                            <Tippy delay={[0, 100]} content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
                                     <FontAwesomeIcon icon={faCloudArrowUp} />
+                                </button>
+                            </Tippy>
+                            <Tippy
+                                delay={[0, 100]}
+                                content = {<span style={{ transform: 'translate3d(1188px, 56px, 0)' }}>Message</span>}
+                                placement="bottom"
+                            >
+                                <button className={cx('action-btn')}>
+                                    <MessageIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy
+                                delay={[0, 100]}
+                                content = {<span style={{ transform: 'translate3d(1188px, 56px, 0)' }}>Message</span>}
+                                placement="bottom"
+                            >
+                                <button className={cx('action-btn')}>
+                                    <span className={cx('quantity-info')}>10</span>
+                                    <LetterIcon />
                                 </button>
                             </Tippy>
                         </>
@@ -179,7 +199,7 @@ function Header() {
                     )}
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
+                            <Image
                                 src="https://scontent.fhan14-4.fna.fbcdn.net/v/t39.30808-6/328691342_503572025047404_1326164334917991130_n.jpg?_nc_cat=102&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=6goNa8TPB7EAX9rXy_Z&_nc_oc=AQlr78d2Qmfj8NP1tBm66oyBP_AHig2pLyo-tSksLyJ-hkZBrF3RJ9zVtdM2VmK8qZM5f404SYi1R5bQ9QGA5YnL&_nc_ht=scontent.fhan14-4.fna&oh=00_AfBd-RtV3IqfnD_bCIsy3u35OOpx0iioRw4loyxd6MtCQQ&oe=64B1ED49"
                                 className={cx('user-avatar')}
                                 alt="LuniuLun"
