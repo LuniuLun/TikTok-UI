@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import style from './Header.module.scss';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
-import images from '~/assets/images';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faEarthAmericas,
@@ -15,11 +15,13 @@ import {
     faGear,
     faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
+import images from '~/assets/images';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 import { LetterIcon, MessageIcon } from '~/components/Icon';
 import Image from '~/components/Image';
 import Search from '../Search';
+import routesConfig from '~/config/routes';
 
 const MENU_ITEMS = [
     {
@@ -72,10 +74,9 @@ const MENU_ITEMS = [
 ];
 const cx = classNames.bind(style);
 
-
 function Header() {
     const currentUser = true;
-    
+
     //handle logic
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
@@ -116,23 +117,24 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
-                    <img src={images.logo} alt="TikTok"></img>
+                    <Link to={routesConfig.home} className={cx('logo-link')}>
+                        <img src={images.logo} alt="TikTok"></img>
+                    </Link>
                 </div>
 
                 {/* search */}
-                <Search/>
+                <Search />
 
                 <div className={cx('action')}>
                     {currentUser ? (
                         <>
-                            <Tippy delay={[0, 100]} content="Upload video" placement="bottom">
+                            <Tippy content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
                                     <FontAwesomeIcon icon={faCloudArrowUp} />
                                 </button>
                             </Tippy>
                             <Tippy
-                                delay={[0, 100]}
-                                content = {<span style={{ transform: 'translate3d(1188px, 56px, 0)' }}>Message</span>}
+                                content={<span style={{ transform: 'translate3d(1188px, 56px, 0)' }}>Message</span>}
                                 placement="bottom"
                             >
                                 <button className={cx('action-btn')}>
@@ -140,8 +142,7 @@ function Header() {
                                 </button>
                             </Tippy>
                             <Tippy
-                                delay={[0, 100]}
-                                content = {<span style={{ transform: 'translate3d(1188px, 56px, 0)' }}>Mail</span>}
+                                content={<span style={{ transform: 'translate3d(1188px, 56px, 0)' }}>Mail</span>}
                                 placement="bottom"
                             >
                                 <button className={cx('action-btn')}>
