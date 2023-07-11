@@ -74,7 +74,6 @@ const cx = classNames.bind(style);
 
 
 function Header() {
-
     const currentUser = true;
     
     //handle logic
