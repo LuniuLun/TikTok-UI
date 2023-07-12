@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import styles from './Button.module.scss';
@@ -27,22 +28,22 @@ function Button({
         ...passProps,
     };
 
-    if(disabled) {
-        Object.keys(_props).forEach(key => {
-            if(key.startsWith('on') && typeof _props[key]  === 'function') {
+    if (disabled) {
+        Object.keys(_props).forEach((key) => {
+            if (key.startsWith('on') && typeof _props[key] === 'function') {
                 delete _props[key];
             }
-        })
+        });
     }
 
-    if(to) {
+    if (to) {
         _props.to = to;
         Comp = Link;
     } else if (href) {
         _props.href = href;
         Comp = 'a';
     }
-    
+
     const classes = cx('wrapper', {
         [className]: className,
         primary,
@@ -62,5 +63,23 @@ function Button({
         </Comp>
     );
 }
+
+Button.protoTypes = {
+    to: PropTypes.string,
+    href: PropTypes.string,
+    primary: PropTypes.bool,
+    outline: PropTypes.bool,
+    small: PropTypes.bool,
+    large: PropTypes.bool,
+    text: PropTypes.bool,
+    rounded: PropTypes.bool,
+    disabled: PropTypes.bool,
+    leftIcon: PropTypes.node,
+    rightIcon: PropTypes.node,
+    children: PropTypes.node.isRequired,
+    className: PropTypes.string,
+    onClick: PropTypes.string,
+    passProps: PropTypes.func,
+};
 
 export default Button;
