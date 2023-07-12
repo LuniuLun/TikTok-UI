@@ -58,7 +58,7 @@ const MENU_ITEMS = [
                     type: 'Language',
                     code: 4,
                     title: 'Chinese',
-                },
+                }
             ],
         },
     },

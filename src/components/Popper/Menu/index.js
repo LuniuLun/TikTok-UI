@@ -7,8 +7,8 @@ import Header from './Header';
 import { useState } from 'react';
 
 const cx = classNames.bind(style);
-const defaultFn = () => {}
-function Menu({ children, items = [], onChange = defaultFn, hideOnClick = false}) {
+const defaultFn = () => {};
+function Menu({ children, items = [], onChange = defaultFn, hideOnClick = false, ...passProps }) {
     const [history, setHistory] = useState([{ data: items }]);
     // console.log(history.length);
     const current = history[history.length - 1];
@@ -24,7 +24,7 @@ function Menu({ children, items = [], onChange = defaultFn, hideOnClick = false}
                     onClick={() => {
                         if (isParent) {
                             setHistory((prev) => [...prev, item.children]);
-                        }else {
+                        } else {
                             onChange(item);
                         }
                     }}
@@ -34,6 +34,7 @@ function Menu({ children, items = [], onChange = defaultFn, hideOnClick = false}
     };
     return (
         <Tippy
+            {...passProps}
             hideOnClick={hideOnClick}
             offset={[10, 12]}
             delay={[0, 500]}
@@ -50,11 +51,11 @@ function Menu({ children, items = [], onChange = defaultFn, hideOnClick = false}
                                 }}
                             />
                         )}
-                        {renderItems()}
+                        <div className={cx('menu-body')}>{renderItems()}</div>
                     </PopperWrapper>
                 </div>
             )}
-            onHide={() => setHistory(prev => prev.slice(0, 1))}
+            onHide={() => setHistory((prev) => prev.slice(0, 1))}
         >
             {children}
         </Tippy>
