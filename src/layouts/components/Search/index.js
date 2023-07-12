@@ -7,8 +7,7 @@ import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-s
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import { useDebounce } from '~/hooks';
-import * as request from '~/utils/requets';
-import * as searchService from '~/apiServices/searchServices';
+import * as searchService from '~/services/searchService';
 const cx = classNames.bind(style);
 
 function Search() {

@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 // import Home from './pages/Home';
 // import Following from './pages/Following';
 import { publicRoutes } from './routes';
-import { DefaultLayout } from './components/Layout';
+import { DefaultLayout } from '~/layouts';
 
 function App() {
     return (
@@ -14,13 +14,23 @@ function App() {
                     <Route path='/following' element={<Following />}/> */}
                     {publicRoutes.map((route, index) => {
                         let Layout = DefaultLayout;
-                        if(route.layout) {
+                        if (route.layout) {
                             Layout = route.layout;
-                        } else if(route.layout === null){
+                        } else if (route.layout === null) {
                             Layout = Fragment;
                         }
-                        const Page = route.component;//chuyen tu component sang element
-                        return <Route key={index} path={route.path} element={<Layout><Page /></Layout>}/>
+                        const Page = route.component; //chuyen tu component sang element
+                        return (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                element={
+                                    <Layout>
+                                        <Page />
+                                    </Layout>
+                                }
+                            />
+                        );
                     })}
                 </Routes>
             </div>

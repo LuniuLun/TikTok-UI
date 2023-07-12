@@ -1,4 +1,4 @@
-import * as request from '~/utils/requets';
+import * as request from '~/utils/httpRequets';
 
 export const search = async (q, type = 'less') => {
     try {
