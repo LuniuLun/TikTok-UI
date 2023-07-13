@@ -52,7 +52,7 @@
     ]
   },
   "devDependencies": {
-    "babel-plugin-module-resolver": "^5.0.0",
+    "@babel/plugin-proposal-private-property-in-object": "^5.0.0",
     "react-app-rewired": "^2.2.1"
   }
 }
