@@ -1,18 +1,23 @@
-.wrapper{
+.wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100vh;
 }
 
-.container{
+.container {
     max-width: 100%;
     margin-top: var(--default-layout-header-height);
     width: var(--default-layout-width);
     padding: 0 var(--default-layout-horizontal-spacer);
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
 }
 
-.content{
-    flex: 1;//chiem het khoang khong con lai
-
+.content {
+    flex: 1;
+    margin-left: 300px;
 }
+
+

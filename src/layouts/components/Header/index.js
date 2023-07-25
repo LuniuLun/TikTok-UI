@@ -22,6 +22,8 @@ import { LetterIcon, MessageIcon } from '~/components/Icon';
 import Image from '~/components/Image';
 import Search from '../Search';
 import config from '~/config';
+import Login from '../Modal/Login';
+import { useState } from 'react';
 
 const MENU_ITEMS = [
     {
@@ -58,7 +60,7 @@ const MENU_ITEMS = [
                     type: 'Language',
                     code: 4,
                     title: 'Chinese',
-                }
+                },
             ],
         },
     },
@@ -75,7 +77,8 @@ const MENU_ITEMS = [
 const cx = classNames.bind(style);
 
 function Header() {
-    const currentUser = true;
+    const currentUser = false;
+    const [login, setLogin] = useState(false);
 
     //handle logic
     const handleMenuChange = (menuItem) => {
@@ -113,6 +116,12 @@ function Header() {
         },
     ];
 
+    const handleClickLogin = () => {
+        setLogin(true);
+    };
+    const handleClose = (value) => {
+        setLogin(value);
+    };
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -153,8 +162,12 @@ function Header() {
                         </>
                     ) : (
                         <>
-                            <Button text>Upload</Button>
-                            <Button primary>Log in</Button>
+                            <Button text onClick={handleClickLogin}>
+                                Upload
+                            </Button>
+                            <Button primary onClick={handleClickLogin}>
+                                Log in
+                            </Button>
                         </>
                     )}
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
@@ -172,6 +185,7 @@ function Header() {
                     </Menu>
                 </div>
             </div>
+            <Login isVisible={login} onClose={handleClose} />
         </header>
     );
 }

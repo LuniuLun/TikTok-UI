@@ -1,0 +1,128 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 120px;
+    padding-bottom: 20px;
+    position: relative;
+    border-bottom: 1px solid #e3e3e4;
+}
+
+.avatar {
+    width: 56px;
+    margin-right: 16px;
+}
+
+.image {
+    width: 100%;
+    height: 56px;
+    border-radius: 50%;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    height: 28px;
+}
+
+.nickname {
+    margin-left: 4px;
+}
+
+.content {
+    max-width: 400px;
+}
+
+.full-name {
+    margin-left: 4px;
+    color: rgba(16, 20, 41, 0.7);
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.desription {
+    color: rgba(22, 24, 35, 0.7);
+    font-weight: 400;
+    font-size: 16px;
+    flex: 1;
+}
+
+.link {
+    text-decoration: underline;
+    margin-left: 4px;
+    color: rgba(43, 93, 185, 0.7);
+}
+
+.music {
+    display: flex;
+    margin: 4px 0 10px 0;
+}
+
+.link-music {
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.btn-follow {
+    position: absolute;
+    right: 40px;
+    top: 8px;
+}
+
+.video-container {
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+}
+
+.video{
+    border-radius: 12px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.icon-music {
+    margin-right: 8px;
+    font-weight: 300;
+}
+
+.interact {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-top: 300px;
+}
+
+.wrapper-icon {
+    background-color: rgba(22, 24, 35, 0.06);
+    height: 48px;
+    width: 48px;
+    margin: 4px;
+    display: flex;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.number-interact {
+    color: rgba(22, 24, 35, 0.75);
+    font-family: 'IBM Plex Sans', TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.icon {
+    margin: auto;
+    font-size: 2.2rem;
+    color: var(--black);
+}
+
+.active-love{
+    color: var(--primary);
+}
+
+.active-save{
+    color: rgba(250, 206, 21, 1);
+}
