@@ -5,13 +5,18 @@ import style from './Menu.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import MenuItem from './MenuItem';
 import Header from './Header';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const cx = classNames.bind(style);
 const defaultFn = () => {};
 function Menu({ children, items = [], onChange = defaultFn, hideOnClick = false, ...passProps }) {
     const [history, setHistory] = useState([{ data: items }]);
     // console.log(history.length);
+
+    //phải làm như này vì để thay đổi menu item khi đăng nhập thành công
+    useEffect(() => {
+        setHistory([{ data: items }]);
+      }, [items]);
     const current = history[history.length - 1];
     // console.log(history);
     // console.log(current);

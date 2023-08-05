@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Video from "~/components/Video";
+import Cookies from 'js-cookie';
 
 
 function Home() {
@@ -10,6 +11,8 @@ function Home() {
         axios.get('http://127.0.0.1:8000/api/videos')
             .then(res => {    
                 setVideos(res.data.videos);
+                console.log(res.data.token);
+                Cookies.set('csrf_token', res.data.token);
             }) 
             .catch(() => {
                 

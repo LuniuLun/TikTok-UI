@@ -2,8 +2,10 @@ import classNames from 'classnames/bind';
 import style from './Email_Phone_ID.module.scss';
 import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 const cx = classNames.bind(style);
-function EmailLogin() {
+
+function EmailLogin({onSubmitLogin}) {
     const [emailInput, setEmailInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
     const submitRef = useRef();
@@ -16,7 +18,37 @@ function EmailLogin() {
             setSubmitActive(false);
         }
     }, [emailInput, passwordInput]);
-
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        if (emailInput !== '' && passwordInput !== '') {
+            axios
+                .post(
+                    'http://127.0.0.1:8000/api/users/login',
+                    {
+                        email: emailInput,
+                        password: passwordInput,
+                    },
+                    {
+                        headers: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json',
+                        },
+                    },
+                )
+                .then((response) => {
+                    console.log(response);
+                    if (response.data === null) {
+                        onSubmitLogin(null);
+                        console.log('Tài khoản hoặc mật khẩu sai.');
+                    } else {
+                        onSubmitLogin(response.data.user);
+                    }
+                })
+                .catch((error) => {
+                    console.log('Không thể kết nối API:', error);
+                });
+        }
+    };
     return (
         <div className={cx('wrapper')}>
             <div className={cx('email')}>
@@ -40,8 +72,8 @@ function EmailLogin() {
                 type="Submit"
                 className={cx('ok', {
                     active: submitActive,
-                    disable: !submitActive,
                 })}
+                onClick={handleSubmit}
             >
                 Đăng nhập
             </button>

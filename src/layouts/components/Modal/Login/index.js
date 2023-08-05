@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import style from './Login.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft, faCaretDown, faX } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faX } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import {
     FaceIcon,
@@ -21,7 +21,7 @@ import EmailLogin from './Email_Phone_ID/email';
 import PhoneLogin from './Email_Phone_ID/phone';
 
 const cx = classNames.bind(style);
-function Login({ isVisible, onClose }) {
+function Login({ isVisible, onClose, onSubmitLogin }) {
     const [loginByQR, setLoginByQR] = useState(false);
     const [loginByPhone, setLoginByPhone] = useState(false);
     const [loginByEmail, setLoginByEmail] = useState(true);
@@ -44,10 +44,12 @@ function Login({ isVisible, onClose }) {
         setLoginByPhone(true);
     };
 
+    //login bang email hoac la sdt
     const handleChange = () => {
         setLoginByEmail(!loginByEmail);
     };
 
+    //dau lui
     const handleBack = () => {
         setLogin(false);
         setLoginByQR(false);
@@ -180,9 +182,9 @@ function Login({ isVisible, onClose }) {
                                         </div>
                                         <div className={cx('form-login')}>
                                             {loginByEmail ? (
-                                                <PhoneLogin/>
+                                                <PhoneLogin onSubmitLogin={onSubmitLogin}/>
                                             ) : (
-                                                <EmailLogin />
+                                                <EmailLogin onSubmitLogin={onSubmitLogin}/>
                                             )}
                                         </div>
                                     </div>

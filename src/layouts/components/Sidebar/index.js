@@ -21,12 +21,11 @@ import { useRef } from 'react';
 
 const cx = classNames.bind(style);
 
-function Sidebar() {
+function Sidebar({login = false}) {
     // const [login, setLogin] = useState(false);
     const [openLogin, setOpenLogin] =useState(false);
     const ref = useRef();
 
-    const login = false;
     const handleClick = () => {
         setOpenLogin(true);
         ref.current.style.zIndex = 11;

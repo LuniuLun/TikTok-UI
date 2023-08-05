@@ -4,9 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 const cx = classNames.bind(style);
 
-function PhoneLogin() {
+function PhoneLogin({ onSubmitLogin }) {
     const [phoneInput, setPhoneInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
     const submitRef = useRef();
@@ -15,13 +16,45 @@ function PhoneLogin() {
     useEffect(() => {
         if (phoneInput !== '' && passwordInput !== '') {
             setSubmitActive(true);
-        }else {
+        } else {
             setSubmitActive(false);
         }
     }, [phoneInput, passwordInput]);
 
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        if (phoneInput !== '' && passwordInput !== '') {
+            axios
+                .post(
+                    'http://127.0.0.1:8000/api/users/login',
+                    {
+                        phone: phoneInput,
+                        password: passwordInput,
+                    },
+                    {
+                        headers: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json',
+                        },
+                    },
+                )
+                .then((response) => {
+                    console.log(response);
+                    if (response.data === null) {
+                        onSubmitLogin(null);
+                        console.log('Tài khoản hoặc mật khẩu sai.');
+                    } else {
+                        onSubmitLogin(response.data.user);
+                    }
+                })
+                .catch((error) => {
+                    console.log('Không thể kết nối API:', error);
+                });
+        }
+    };
+
     return (
-        <div className={cx('wrapper')}>
+        <form onSubmit={handleSubmit} className={cx('wrapper')}>
             <div className={cx('phone')}>
                 <button className={cx('phone-option')}>
                     VN +84
@@ -52,7 +85,7 @@ function PhoneLogin() {
             >
                 Đăng nhập
             </button>
-        </div>
+        </form>
     );
 }
 

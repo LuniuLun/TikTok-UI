@@ -13,7 +13,7 @@ function AccountItem() {
         return (
             <div tabIndex="-1" {...props}>
                 <PopperWrapper>
-                    <AccountPreview src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/3ddd86924e581bf3b393e3c047b1a616~c5_100x100.jpeg?x-expires=1689415200&amp;x-signature=no%2FNu8x6h9qo4krY173THHSdFCs%3D" />
+                    <AccountPreview src="https://files.fullstack.edu.vn/f8-tiktok/users/2/627394cb56d66.jpg" />
                 </PopperWrapper>
             </div>
         );
@@ -26,7 +26,7 @@ function AccountItem() {
                     <img
                         className={cx('avatar')}
                         alt=""
-                        src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/3ddd86924e581bf3b393e3c047b1a616~c5_100x100.jpeg?x-expires=1689415200&amp;x-signature=no%2FNu8x6h9qo4krY173THHSdFCs%3D"
+                        src="https://files.fullstack.edu.vn/f8-tiktok/users/2/627394cb56d66.jpg"
                     />
                     <div className={cx('item-info')}>
                         <p className={cx('nickname')}>
