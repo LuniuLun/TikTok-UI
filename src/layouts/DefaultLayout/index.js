@@ -9,16 +9,24 @@ const cx = classNames.bind(style);
 
 function DefaultLayout({ children }) {
     const [login, setLogin] = useState(false);
+    const [currentUser, setCurrentUser] = useState({});
+
     const setLoginSidebar = (value) => {
         setLogin(value);
     };
+
+    const setLoginHeader = (isLogin, user) => {
+        setLogin(isLogin);
+        setCurrentUser(user);
+    };
+
     useEffect(() => {}, [login]);
-    
+
     return (
         <div className={cx('wrapper')}>
-            <Header setLoginSidebar={setLoginSidebar} />
+            <Header setLoginSidebar={setLoginSidebar} login={login} currentUser={currentUser} />
             <div className={cx('container')}>
-                <Sidebar login={login} />
+                <Sidebar login={login} setLoginHeader={setLoginHeader} />
                 <div className={cx('content')}>{children}</div>
             </div>
         </div>

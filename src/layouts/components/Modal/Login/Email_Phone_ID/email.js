@@ -36,7 +36,6 @@ function EmailLogin({onSubmitLogin}) {
                     },
                 )
                 .then((response) => {
-                    console.log(response);
                     if (response.data === null) {
                         onSubmitLogin(null);
                         console.log('Tài khoản hoặc mật khẩu sai.');

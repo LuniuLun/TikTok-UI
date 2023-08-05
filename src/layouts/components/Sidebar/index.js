@@ -15,17 +15,16 @@ import {
 import SuggestedAccount from '~/components/SuggestedAccount';
 import Button from '~/components/Button';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import Login from '../Modal/Login';
 import { useRef } from 'react';
 
 const cx = classNames.bind(style);
 
-function Sidebar({login = false}) {
-    // const [login, setLogin] = useState(false);
-    const [openLogin, setOpenLogin] =useState(false);
+function Sidebar({login = false, setLoginHeader}) {
+    // const [isLogin, setIsLogin] = useState(false);
+    const [openLogin, setOpenLogin] = useState(false);
     const ref = useRef();
-
     const handleClick = () => {
         setOpenLogin(true);
         ref.current.style.zIndex = 11;
@@ -34,6 +33,16 @@ function Sidebar({login = false}) {
         setOpenLogin(value);
         ref.current.style.zIndex = 1;
     }
+
+    const handleSubmitLogin = (user) => {
+        if(user) {
+            //đóng modal login
+            setOpenLogin(false);
+            setLoginHeader(true, user);
+        }
+
+    }
+
     return (
         <aside className={cx('wrapper')} ref={ref}>
             <Menu className={cx('menu')}>
@@ -95,9 +104,9 @@ function Sidebar({login = false}) {
                     </>
                 )}
             </Menu>
-            <Login isVisible={openLogin} onClose={handleClose} />
+            <Login isVisible={openLogin} onClose={handleClose} onSubmitLogin={handleSubmitLogin}/>
         </aside>
     );
 }
 
-export default Sidebar;
+export default memo(Sidebar);

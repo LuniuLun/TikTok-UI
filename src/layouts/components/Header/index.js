@@ -76,10 +76,10 @@ const MENU_ITEMS = [
 ];
 const cx = classNames.bind(style);
 
-function Header({setLoginSidebar}) {
-    const [currentUser, setCurrentUser] = useState(false);
+function Header({setLoginSidebar, login = false, currentUser = {}}) {
+    // const [currentUser, setCurrentUser] = useState(login);
     const [user, setUser] = useState({});
-    const [login, setLogin] = useState(false);
+    const [openFormLogin, setOpenFormLogin] = useState(false);
 
     //handle logic
     const handleMenuChange = (menuItem) => {
@@ -119,23 +119,22 @@ function Header({setLoginSidebar}) {
         },
     ];
 
-    const handleClickLogin = (value) => {
-        setLogin(true);
+    const handleClickLogin = () => {
+        setOpenFormLogin(true);
     };
 
     const handleSubmitLogin = (user) => {
         if(user) {
             setUser(user);
-            setCurrentUser(true);
+            // setCurrentUser(true);
             //đóng modal login
-            setLogin(false);
+            setOpenFormLogin(false);
             setLoginSidebar(true);
         }
-
     }
 
     const handleClose = (value) => {
-        setLogin(value);
+        setOpenFormLogin(value);
     };
 
     return (
@@ -151,7 +150,7 @@ function Header({setLoginSidebar}) {
                 <Search />
 
                 <div className={cx('action')}>
-                    {currentUser ? (
+                    {login ? (
                         <>
                             <Tippy content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
@@ -186,10 +185,10 @@ function Header({setLoginSidebar}) {
                             </Button>
                         </>
                     )}
-                    <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
-                        {currentUser ? (
+                    <Menu items={login ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+                        {login ? (
                             <Image                                
-                                src= {user ? user.avatar : "https://scontent.fhan14-4.fna.fbcdn.net/v/t39.30808-6/328691342_503572025047404_1326164334917991130_n.jpg?_nc_cat=102&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=6goNa8TPB7EAX9rXy_Z&_nc_oc=AQlr78d2Qmfj8NP1tBm66oyBP_AHig2pLyo-tSksLyJ-hkZBrF3RJ9zVtdM2VmK8qZM5f404SYi1R5bQ9QGA5YnL&_nc_ht=scontent.fhan14-4.fna&oh=00_AfBd-RtV3IqfnD_bCIsy3u35OOpx0iioRw4loyxd6MtCQQ&oe=64B1ED49"}
+                                src= {currentUser ? currentUser.avatar : (user ? user.avatar : "https://scontent.fhan14-4.fna.fbcdn.net/v/t39.30808-6/328691342_503572025047404_1326164334917991130_n.jpg?_nc_cat=102&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=6goNa8TPB7EAX9rXy_Z&_nc_oc=AQlr78d2Qmfj8NP1tBm66oyBP_AHig2pLyo-tSksLyJ-hkZBrF3RJ9zVtdM2VmK8qZM5f404SYi1R5bQ9QGA5YnL&_nc_ht=scontent.fhan14-4.fna&oh=00_AfBd-RtV3IqfnD_bCIsy3u35OOpx0iioRw4loyxd6MtCQQ&oe=64B1ED49")}
                                 className={cx('user-avatar')}
                                 alt="LuniuLun"
                             />
@@ -201,7 +200,7 @@ function Header({setLoginSidebar}) {
                     </Menu>
                 </div>
             </div>
-            <Login isVisible={login} onClose={handleClose} onSubmitLogin={handleSubmitLogin}/>
+            <Login isVisible={openFormLogin} onClose={handleClose} onSubmitLogin={handleSubmitLogin}/>
         </header>
     );
 }
