@@ -52,6 +52,7 @@ function EmailLogin({onSubmitLogin}) {
         <div className={cx('wrapper')}>
             <div className={cx('email')}>
                 <input
+                    type='email'
                     className={cx('email-input')}
                     placeholder="Email hoặc TikTok ID"
                     onChange={(e) => setEmailInput(e.target.value)}

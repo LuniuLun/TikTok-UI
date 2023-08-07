@@ -1,0 +1,80 @@
+//phone
+.wrapper{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+.email,
+.phone{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: #f1f1f2;
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    margin: 4px 0;
+}
+
+.phone-option{
+    max-width: 120px;
+    padding: 16px;
+    background-color: #f1f1f2;
+    font-size: 1.5rem;
+    color: rgb(22, 24, 35);
+    border-radius: 2px;
+
+}
+
+.icon-option{
+    margin-left: 10px;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.email,
+.phone-input{
+    padding: 16px;
+    background-color: #f1f1f2;
+    flex: 1;
+    font-size: 1.5rem;
+    border-radius: 2px;
+}
+
+.password{
+    background-color: #f1f1f2;
+    padding: 16px;
+    margin: 8px 0;
+    font-size: 1.6rem;
+    border-radius: 2px;
+    border: 1px solid rgba(22, 24, 35, 0.12);
+
+}
+
+.forgetpw-link{
+    display: flex;
+    font-size: 1.2rem;
+    justify-content: flex-start;
+    margin: 3px 0;
+    max-width: 100px;
+
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+.ok{
+    padding: 16px;
+    font-size: 1.6rem;
+    margin: 20px 0 0 0;
+    border: 1px solid rgba(22, 24, 35, 0.12);
+}
+
+.disable{
+    cursor: default;
+}
+
+.active{    
+    cursor: pointer;
+    color: #fff;
+    background-color: var(--primary);
+}

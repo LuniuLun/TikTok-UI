@@ -188,9 +188,9 @@ function Header({setLoginSidebar, login = false, currentUser = {}}) {
                     <Menu items={login ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {login ? (
                             <Image                                
-                                src= {currentUser ? currentUser.avatar : (user ? user.avatar : "https://scontent.fhan14-4.fna.fbcdn.net/v/t39.30808-6/328691342_503572025047404_1326164334917991130_n.jpg?_nc_cat=102&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=6goNa8TPB7EAX9rXy_Z&_nc_oc=AQlr78d2Qmfj8NP1tBm66oyBP_AHig2pLyo-tSksLyJ-hkZBrF3RJ9zVtdM2VmK8qZM5f404SYi1R5bQ9QGA5YnL&_nc_ht=scontent.fhan14-4.fna&oh=00_AfBd-RtV3IqfnD_bCIsy3u35OOpx0iioRw4loyxd6MtCQQ&oe=64B1ED49")}
+                                src= {currentUser.avatar ? currentUser.avatar : (user.avatar ? user.avatar : "https://scontent.fhan14-4.fna.fbcdn.net/v/t39.30808-6/328691342_503572025047404_1326164334917991130_n.jpg?_nc_cat=102&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=6goNa8TPB7EAX9rXy_Z&_nc_oc=AQlr78d2Qmfj8NP1tBm66oyBP_AHig2pLyo-tSksLyJ-hkZBrF3RJ9zVtdM2VmK8qZM5f404SYi1R5bQ9QGA5YnL&_nc_ht=scontent.fhan14-4.fna&oh=00_AfBd-RtV3IqfnD_bCIsy3u35OOpx0iioRw4loyxd6MtCQQ&oe=64B1ED49")}
                                 className={cx('user-avatar')}
-                                alt="LuniuLun"
+                                alt={currentUser.full_name ? currentUser.full_name : (user.full_name ? user.full_name : "No user")}
                             />
                         ) : (
                             <button className={cx('more-btn')}>
